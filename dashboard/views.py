@@ -3,10 +3,35 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+
+def error_404(request, exception):
+
+    return render(request, 'dashboard/404.html')
+
+
 def index(request):
 
-	return HttpResponse("<h1>This is the index page</h1>")
+    context = {}
+
+    return render(request, 'dashboard/index.html', context)
+
 
 def staff(request):
 
-	return HttpResponse("<h1>This is the staff page</h1>")
+    context = {}
+
+    return render(request, 'dashboard/staff.html', context)
+
+
+def product(request):
+
+    context = {}
+
+    return render(request, 'dashboard/product.html', context)
+
+
+def order(request):
+
+    context = {}
+
+    return render(request, 'dashboard/order.html', context)
