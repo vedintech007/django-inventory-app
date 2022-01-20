@@ -31,3 +31,5 @@ Run python manage.py createsuperuser (To create an admin user)
 ```
 Run python manage.py runserver
 ```
+
+<img src="page.png">
