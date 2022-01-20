@@ -1,31 +1,43 @@
 	<!--Navbar-->
 	<nav class="navbar navbar-expand-lg navbar-info bg-info">
+		{% if user.is_authenticated %}
 		<div class="container">
 			<a class="navbar-brand text-white" href="{% url 'dashboard-index' %}">VEDInventory</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon bg-dark"></span>
+				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link text-white" href="index.html">Dashboard <span
+						<a class="nav-link text-white" href="{% url 'dashboard-index' %}">Dashboard <span
 								class="sr-only">(current)</span></a>
 					</li>
 				</ul>
+
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link text-white" href="#">Admin<span
+						<a class="nav-link text-white" href="#">Hello {{request.user}}!<span
 								class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-white"
-							href="#">Logout</a>
+							href="{% url 'user-logout' %}">Logout</a>
 					</li>
 				</ul>
+				{% else %}
 
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link text-white" href="{% url 'user-register' %}">Register<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" href="{% url 'user-login' %}">Login</a>
+					</li>
+				</ul>
+				{% endif %}
 			</div>
 		</div>
 	</nav>
