@@ -42,6 +42,10 @@ INSTALLED_APPS = [
 
     # my apps
     'dashboard.apps.DashboardConfig',
+    'user.apps.UserConfig',
+
+    # Third part apps
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Internationalization
