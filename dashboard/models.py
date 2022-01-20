@@ -1,6 +1,4 @@
 from sre_parse import CATEGORIES
-from statistics import quantiles
-from unicodedata import category
 from django.db import models
 
 # Create your models here.
@@ -16,8 +14,7 @@ class Product(models.Model):
 	quantity = models.PositiveIntegerField(null=True)
 
 	class Meta:
-		verbose_name = 'Product'
 		verbose_name_plural = 'Products'
 
 	def __str__(self):
-		return self.name
+		return f"{self.name} - {self.quantity}"
