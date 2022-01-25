@@ -26,9 +26,10 @@ urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', include('dashboard.urls')),
 
-	# User paths
+	# User url paths
 	path('register/', user_view.register, name="user-register"),
 	path('profile/', user_view.profile, name="user-profile"),
+	path('profile/update/', user_view.profile_update, name="user-profile-update"),
 
 	# Login and logout url & view
 	path('', auth_views.LoginView.as_view(template_name="user/login.html"), name="user-login"),
