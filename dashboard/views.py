@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Order
 from django.contrib.auth.models import User
 
-from .forms import ProductForm, OrderForm
+from .forms import ProductForm, OrderForm, ProductCategoryForm
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def index(request):
 
     if request.method == "POST":
         form = OrderForm(request.POST)
-        
+
         if form.is_valid():
             instance = form.save(commit=False)
             instance.staff = request.user
@@ -58,23 +58,45 @@ def staff_detail(request, pk):
 
     return render(request, 'dashboard/staff_detail.html', context)
 
+
 @login_required
 def product(request):
-
     items = Product.objects.all()  # using ORM
     # items = Product.objects.raw('SELECT * FROM dashboard_product') #this allows us to write sql queries
 
     if request.method == "POST":
         form = ProductForm(request.POST)
+
         if form.is_valid():
             form.save()
             return redirect('dashboard-product')
     else:
         form = ProductForm()
+        product_form = ProductCategoryForm()
 
     context = {
         "items": items,
-        'form': form
+        'form': form,
+        'product_form': product_form
+    }
+
+    return render(request, 'dashboard/product.html', context)
+
+
+@login_required
+def create_product_category(request):
+
+    if request.method == "POST":
+        product_form = ProductCategoryForm(request.POST)
+
+        if product_form.is_valid():
+            product_form.save()
+            return redirect('dashboard-product')
+    else:
+        product_form = ProductCategoryForm()
+
+    context = {
+        'product_form': product_form
     }
 
     return render(request, 'dashboard/product.html', context)

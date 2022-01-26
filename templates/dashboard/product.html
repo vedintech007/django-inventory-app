@@ -18,6 +18,16 @@
 						<input class="btn btn-success btn-block" type="submit" value="Add Product">
 
 					</form>
+
+					<br>
+					<br>
+					<h4>Add Category</h4>
+					<hr>
+					<form action="{% url 'dashboard-product-create' %}" method="POST">
+						{% csrf_token %}
+						{{product_form|crispy}}
+						<input class="btn btn-success btn-block" type="submit" value="Add Category">
+					</form>
 				</div>
 			</div>
 			<div class="col-md-8">
