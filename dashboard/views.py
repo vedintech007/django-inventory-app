@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Product
+from django.contrib.auth.models import User
 
 from .forms import ProductForm
 
@@ -22,11 +23,25 @@ def index(request):
 
 @login_required
 def staff(request):
+    workers = User.objects.all()
 
-    context = {}
+    context = {
+        'workers': workers
+    }
 
     return render(request, 'dashboard/staff.html', context)
 
+
+@login_required
+def staff_detail(request, pk):
+
+    worker = User.objects.get(id=pk)
+
+    context = {
+        'worker': worker
+    }
+
+    return render(request, 'dashboard/staff_detail.html', context)
 
 @login_required
 def product(request):
@@ -50,6 +65,7 @@ def product(request):
     return render(request, 'dashboard/product.html', context)
 
 
+@login_required
 def product_delete(request, pk):
     item = Product.objects.get(id=pk)
     if request.method == "POST":
@@ -63,6 +79,7 @@ def product_delete(request, pk):
     return render(request, 'dashboard/product_delete.html', context)
 
 
+@login_required
 def product_update(request, pk):
     item = Product.objects.get(id=pk)
     if request.method == "POST":

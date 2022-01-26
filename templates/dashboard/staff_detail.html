@@ -1,0 +1,55 @@
+{% extends "partials/base.html" %}
+{% block title %}Staff Page{% endblock title %}
+
+{% block content %}
+{% include "partials/topnav.html" %}
+<div class="container">
+	<div class="row my-4">
+		<div class="col-md-4">
+
+		</div>
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header bg-info text-white">
+					Profile Detail Page
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-8">
+							<span class="h4">Detailed Profile Information</span>
+							<a class="btn btn-info btn-sm float-right" href="{% url 'dashboard-staff' %}">Back</a>
+							<hr>
+							<table class="table bg-white table-borderless">
+								<tbody>
+									<tr>
+										<th scope="row">Name</th>
+										<td>{{worker.username|title}}</td>
+									</tr>
+									<tr>
+										<th scope="row">Email</th>
+										<td>{{worker.email}}</td>
+									</tr>
+									<tr>
+										<th scope="row">Phone</th>
+										<td>{{worker.profile.phone}}</td>
+									</tr>
+									<tr>
+										<th scope="row">Address</th>
+										<td>{{worker.profile.address}}</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+						<div class="col-md-4">
+							<img class="img-thumbnail" src="{{worker.profile.image.url}}" alt="My profile image">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+{% endblock content %}
