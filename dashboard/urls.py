@@ -6,4 +6,7 @@ urlpatterns = [
 	path('staff/', staff, name="dashboard-staff"),
 	path('product/', product, name="dashboard-product"),
 	path('order/', order, name="dashboard-order"),
+
+	path('product/delete/<int:pk>/', product_delete, name="dashboard-product-delete"),
+	path('product/update/<int:pk>/', product_update, name="dashboard-product-update"),
 ]
