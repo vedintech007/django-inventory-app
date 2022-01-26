@@ -17,6 +17,7 @@ def error_404(request, exception):
 @login_required
 def index(request):
     orders = Order.objects.all()
+    products = Product.objects.all()
 
     if request.method == "POST":
         form = OrderForm(request.POST)
@@ -33,7 +34,8 @@ def index(request):
 
     context = {
         'orders': orders,
-        'form': form
+        'form': form,
+        'products': products
     }
 
     return render(request, 'dashboard/index.html', context)
