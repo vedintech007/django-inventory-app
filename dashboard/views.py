@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Order
 from django.contrib.auth.models import User
 
-from .forms import ProductForm
+from .forms import ProductForm, OrderForm
 
 # Create your views here.
 
@@ -15,8 +15,22 @@ def error_404(request, exception):
 
 @login_required
 def index(request):
+    orders = Order.objects.all()
 
-    context = {}
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.staff = request.user
+            instance.save()
+            return redirect('dashboard-index')
+    else:
+        form = OrderForm()
+
+    context = {
+        'orders': orders,
+        'form': form
+    }
 
     return render(request, 'dashboard/index.html', context)
 
