@@ -30,6 +30,8 @@ Run python manage.py createsuperuser (To create an admin user)
 ## Run Project
 ```
 Run python manage.py runserver
+
+Please you will require internet to load certain stuffs
 ```
 
 <img src="page.png">
