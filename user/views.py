@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
+from django.contrib import messages
 
 from .forms import CreateUserForm, ProfileUpdateForm, UserUpdateForm
 
@@ -10,6 +11,8 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f"Account has been created for {username}. Continue with login!")
             return redirect('user-login')
     else:
         form = CreateUserForm()
@@ -34,6 +37,8 @@ def profile_update(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            username = user_form.cleaned_data.get('username')
+            messages.success(request, f"Account update for {username} sucessful!")
             return redirect('user-profile')
     else:
         user_form = UserUpdateForm(instance=request.user)

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Product, Order
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from .forms import ProductForm, OrderForm, ProductCategoryForm
 
@@ -24,6 +25,8 @@ def index(request):
             instance = form.save(commit=False)
             instance.staff = request.user
             instance.save()
+            product_name = instance.product.name
+            messages.success(request, f"Order for {product_name} successful!")
             return redirect('dashboard-index')
     else:
         form = OrderForm()
@@ -69,6 +72,8 @@ def product(request):
 
         if form.is_valid():
             form.save()
+            product_name = form.cleaned_data.get('name')
+            messages.success(request, f"{product_name} has been added!")
             return redirect('dashboard-product')
     else:
         form = ProductForm()
@@ -91,6 +96,8 @@ def create_product_category(request):
 
         if product_form.is_valid():
             product_form.save()
+            product_name = product_form.cleaned_data.get('name')
+            messages.success(request, f"{product_name} has been added!")
             return redirect('dashboard-product')
     else:
         product_form = ProductCategoryForm()
@@ -106,7 +113,9 @@ def create_product_category(request):
 def product_delete(request, pk):
     item = Product.objects.get(id=pk)
     if request.method == "POST":
+        product_name = item.name
         item.delete()
+        messages.success(request, f"{product_name} has been deleted!")
         return redirect('dashboard-product')
 
     context = {
@@ -123,6 +132,8 @@ def product_update(request, pk):
         form = ProductForm(request.POST, instance=item)
         if form.is_valid():
             form.save()
+            product_name = form.cleaned_data.get('name')
+            messages.success(request, f"{product_name} updated successful!")
             return redirect("dashboard-product")
     else:
         form = ProductForm(instance=item)
