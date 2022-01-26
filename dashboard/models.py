@@ -12,7 +12,7 @@ class ProductCategory(models.Model):
 
 class Product(models.Model):
 	name = models.CharField(max_length=100, null=True)
-	category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True)
+	category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True)
 	quantity = models.PositiveIntegerField(null=True)
 
 	class Meta:

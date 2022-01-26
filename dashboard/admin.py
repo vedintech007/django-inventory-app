@@ -19,5 +19,6 @@ admin.site.register(Product, ProductAdmin)
 
 
 admin.site.register(Order)
+admin.site.register(ProductCategory)
 
 # admin.site.unregister(Group)
