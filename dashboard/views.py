@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Product
+from .models import Product, Order
 from django.contrib.auth.models import User
 
 from .forms import ProductForm
@@ -100,7 +100,10 @@ def product_update(request, pk):
 
 @login_required
 def order(request):
+    orders = Order.objects.all()
 
-    context = {}
+    context = {
+        'orders': orders
+    }
 
     return render(request, 'dashboard/order.html', context)
