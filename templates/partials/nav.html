@@ -21,7 +21,9 @@
 						More Pages
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Categories</a>
+						{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+						<a class="dropdown-item" href="{% url 'dashboard-product-categories' %}">Categories</a>
+						{% endif %}
 						<a class="dropdown-item" href="#"></a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="{% url 'user-profile' %}">Update Details</a>

@@ -33,7 +33,7 @@
 							<td>{{order.order_quantity}}</td>
 							<td>{{order.staff}}</td>
 							<td>{{order.date_of_order}}</td>
-							<td><a class="btn btn-danger" href=""> Delete</a></td>
+							<td><a class="btn btn-danger" href="{% url 'dashboard-order-delete' order.pk %}"> Delete</a></td>
 						</tr>
 						
 						{% endfor %}

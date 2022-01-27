@@ -30,6 +30,7 @@ class Order(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Orders'
+		ordering = ['-id']
 
 	def __str__(self):
 		return f"{self.product} - ordered by {self.staff.username} - on {self.date_of_order}"

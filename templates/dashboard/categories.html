@@ -1,0 +1,39 @@
+{% extends "partials/base.html" %}
+{% block title %}Categories Page{% endblock title %}
+
+{% block content %}
+{% include "partials/topnav.html" %}
+<!--Order Table-->
+<div class="container">
+	<div class="row my-4">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-12">
+			<table class="table bg-white">
+				<thead class="bg-info">
+					<tr class="text-white">
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for category in categories %}
+
+					<tr>
+						<th scope="row">{{ forloop.counter }}</th>
+
+						<td>{{category.name}}</td>
+						<td><a class="btn btn-info" href="{% url 'dashboard-product-category-update' category.id %}"> Update</a></td>
+						<td><a class="btn btn-danger" href="{% url 'dashboard-product-category-delete' category.id %}"> Delete</a></td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+{% endblock content %}
