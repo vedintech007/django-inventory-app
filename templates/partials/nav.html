@@ -23,11 +23,12 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						{% if user.is_authenticated and user.is_staff and user.is_superuser %}
 						<a class="dropdown-item" href="{% url 'dashboard-product-categories' %}">Categories</a>
-						{% endif %}
 						<a class="dropdown-item" href="#"></a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{% url 'user-profile' %}">Update Details</a>
-						<a class="dropdown-item" href="{% url 'password_reset' %}">Change Password</a>
+						{% endif %}
+						<a class="dropdown-item" href="{% url 'user-profile' %}">Profile</a>
+						<a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+						<a class="dropdown-item" href="{% url 'password_reset' %}">Reset Password</a>
 					</div>
 				</li>
 			</ul>
