@@ -5,12 +5,10 @@
 	{% include "partials/topnav.html" %}
 	<!--Order Table-->
 	<div class="container">
-		
 		<div class="row my-4">
 			<div class="col-md-4">
-
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<table class="table bg-white">
 					<thead class="bg-info">
 						<tr class="text-white">
@@ -21,6 +19,7 @@
 							<th scope="col">Quantity</th>
 							<th scope="col">Ordered by</th>
 							<th scope="col">Date Ordered</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,6 +33,7 @@
 							<td>{{order.order_quantity}}</td>
 							<td>{{order.staff}}</td>
 							<td>{{order.date_of_order}}</td>
+							<td><a class="btn btn-danger" href=""> Delete</a></td>
 						</tr>
 						
 						{% endfor %}

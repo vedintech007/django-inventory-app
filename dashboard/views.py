@@ -19,6 +19,10 @@ def index(request):
     orders = Order.objects.all()
     products = Product.objects.all()
 
+    workers_count = User.objects.all().count()
+    orders_count = Order.objects.count()
+    products_count = Product.objects.count()
+
     if request.method == "POST":
         form = OrderForm(request.POST)
 
@@ -35,7 +39,11 @@ def index(request):
     context = {
         'orders': orders,
         'form': form,
-        'products': products
+        'products': products,
+
+        'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count
     }
 
     return render(request, 'dashboard/index.html', context)
@@ -44,9 +52,16 @@ def index(request):
 @login_required
 def staff(request):
     workers = User.objects.all()
+    workers_count = workers.count()
+    orders_count = Order.objects.count()
+    products_count = Product.objects.count()
+
 
     context = {
-        'workers': workers
+        'workers': workers,
+        'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count
     }
 
     return render(request, 'dashboard/staff.html', context)
@@ -54,11 +69,17 @@ def staff(request):
 
 @login_required
 def staff_detail(request, pk):
-
     worker = User.objects.get(id=pk)
+    workers_count = User.objects.all().count()
+    orders_count = Order.objects.count()
+    products_count = Product.objects.count()
 
     context = {
-        'worker': worker
+        'worker': worker,
+        
+        'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count
     }
 
     return render(request, 'dashboard/staff_detail.html', context)
@@ -68,6 +89,9 @@ def staff_detail(request, pk):
 def product(request):
     items = Product.objects.all()  # using ORM
     # items = Product.objects.raw('SELECT * FROM dashboard_product') #this allows us to write sql queries
+    workers_count = User.objects.count()
+    orders_count = Order.objects.count()
+    products_count = items.count()
 
     if request.method == "POST":
         form = ProductForm(request.POST)
@@ -80,11 +104,16 @@ def product(request):
     else:
         form = ProductForm()
         product_form = ProductCategoryForm()
+        
+
 
     context = {
         "items": items,
         'form': form,
-        'product_form': product_form
+        'product_form': product_form,
+        'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count
     }
 
     return render(request, 'dashboard/product.html', context)
@@ -151,9 +180,15 @@ def product_update(request, pk):
 @login_required
 def order(request):
     orders = Order.objects.all()
+    workers_count = User.objects.count()
+    orders_count = orders.count()
+    products_count = Product.objects.count()
 
     context = {
-        'orders': orders
+        'orders': orders,
+        'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count
     }
 
     return render(request, 'dashboard/order.html', context)

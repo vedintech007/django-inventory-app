@@ -81,7 +81,7 @@
 								{% for product in products %} '{{product.name}}', {% endfor %}
 							],
 							datasets: [{
-								label: 'Order',
+								label: 'Products',
 								data: [
 									{% for product in products %} {{ product.quantity }}, {% endfor %}
 								],
