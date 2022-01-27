@@ -20,7 +20,7 @@
 						aria-expanded="false">
 						More Pages
 					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<div class="dropdown-menu bg-info" aria-labelledby="navbarDropdown">
 						{% if user.is_authenticated and user.is_staff and user.is_superuser %}
 						<a class="dropdown-item" href="{% url 'dashboard-product-categories' %}">Categories</a>
 						<a class="dropdown-item" href="#"></a>
