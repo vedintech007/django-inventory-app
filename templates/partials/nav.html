@@ -18,12 +18,13 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 						aria-expanded="false">
-						More Links
+						More Pages
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">Categories</a>
 						<a class="dropdown-item" href="#"></a>
 						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{% url 'user-profile' %}">Update Details</a>
 						<a class="dropdown-item" href="{% url 'password_reset' %}">Change Password</a>
 					</div>
 				</li>
@@ -31,7 +32,7 @@
 
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active">
-					<a class="nav-link text-white" href="{% url 'user-profile' %}">Hello {{request.user|title}}!<span
+					<a class="nav-link text-white" href="{% url 'user-profile' %}">Hello {{request.user|upper}}!<span
 							class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">

@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .forms import CreateUserForm, ProfileUpdateForm, UserUpdateForm
@@ -24,11 +25,13 @@ def register(request):
     return render(request, 'user/register.html', context)
 
 
+@login_required
 def profile(request):
 
     return render(request, 'user/profile.html')
 
 
+@login_required
 def profile_update(request):
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST, instance=request.user)
