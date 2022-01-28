@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls')),
-    path('user', include('user.urls')),
+    path('', include('user.urls')),
 ]
 
 handler404 = 'dashboard.views.error_404'
